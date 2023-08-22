@@ -1,15 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Player_Controller : MonoBehaviour
 {
+    public static Player_Controller Instance { get; private set; }
+
     //stage counter: stage 1 is player stage and stage 2 is enemy stage
-    public static int stage = 1;
+    public int stage = 1, round = 1;
 
     //player variables
     public float moveSpeed = 5f; //player moving speed
-    public float moveSpeedmulti = 2f; //player moving speed
-    public static Transform player_pos;
+    public Transform player_pos;
     public Transform movePoint; //target
     public SpriteRenderer sprite_renderer;
 
@@ -28,6 +30,18 @@ public class Player_Controller : MonoBehaviour
     public LayerMask whatStopsMovement;
     public int upwardFace = 1;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     void Start()
     {
         player_pos = GetComponent<Transform>();
@@ -40,10 +54,10 @@ public class Player_Controller : MonoBehaviour
         SpriteRefresher();
         //Always displays the right sprites based on the upward face.
 
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        player_pos.position = Vector3.MoveTowards(player_pos.position, movePoint.position, moveSpeed * Time.deltaTime);
         //The player always move to the target position. We don't move the player we move the target, the player will follow it. I can make this slower by doing this moveSpeed/2.
         
-        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1)
         {
             for (int i = 0; i <= 3; i++)
                 directions[i].SetActive(true);
@@ -57,17 +71,17 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Ating");
-        if ( collision.gameObject.tag == "Smashable")
+        if ( other.gameObject.tag == "Smashable")
         {
-            collision.gameObject.SetActive(false);
+            Destroy(other.gameObject);
         }
     }
 
     public void moveLeft()
     {
+        round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
             for (int i = 1; i <= dir_movement_left; i++)
@@ -106,6 +120,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveRight()
     {
+        round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
             for (int i = 1; i <= dir_movement_right; i++)
@@ -144,6 +159,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveDown()
     {
+        round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
             for (int i = 1; i <= dir_movement_down; i++)
@@ -181,6 +197,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveUp()
     {
+        round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
             for (int i = 1; i <= dir_movement_up; i++)
