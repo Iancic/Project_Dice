@@ -73,7 +73,12 @@ public class Player_Controller : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.gameObject.tag == "Smashable")
+        if ( other.gameObject.tag == "Enemy" && stage == 1)
+        {
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Spawner")
         {
             Destroy(other.gameObject);
         }
@@ -91,7 +96,7 @@ public class Player_Controller : MonoBehaviour
                     movePoint.position -= new Vector3(1f, 0f, 0f);
                 }
             }
-        }
+        } 
 
         switch (upwardFace)
         {

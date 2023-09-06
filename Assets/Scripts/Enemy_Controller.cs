@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.Collections.Unicode;
 
 public class Enemy_Controller : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Enemy_Controller : MonoBehaviour
     public IEnumerator MovementEnemy()
     {
             yield return new WaitForSeconds(1.2f);
-                if (distance_x == 0) { }
+                if (distance_x <= 0.05f) { }
                 else if (distance_x > 0)
                 {
                     if (!Physics2D.OverlapCircle(transform.position + new Vector3(0f, -1f, 0f), .2f, whatStopsMovementenemy))
@@ -45,7 +46,7 @@ public class Enemy_Controller : MonoBehaviour
                     }
                 }
 
-                if (distance_y == 0) { }
+                if (distance_y <= 0.05f) { }
                 else if (distance_y > 0)
                 {
                     if (!Physics2D.OverlapCircle(transform.position + new Vector3(-1f, 0f, 0f), .2f, whatStopsMovementenemy))

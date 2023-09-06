@@ -9,6 +9,8 @@ TagManager:
   - up
   - down
   - Smashable
+  - Spawner
+  - Enemy
   layers:
   - Default
   - TransparentFX
