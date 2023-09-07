@@ -11,7 +11,7 @@ public class Player_Controller : MonoBehaviour
     public int stage = 1, round = 1;
 
     //player variables
-    public float moveSpeed = 5f; //player moving speed
+    public float moveSpeed = 7f; //player moving speed
     public Transform player_pos;
     public Transform movePoint; //target
     public SpriteRenderer sprite_renderer;
@@ -81,13 +81,17 @@ public class Player_Controller : MonoBehaviour
         if ( other.gameObject.tag == "Enemy" )
         {
             Destroy(other.gameObject);
-            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .4f));
             audio_source.PlayOneShot(enemy_kill_clip);
+            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .4f));
+            Timer_Controller.time_remaining += 1f;
         }
 
         if (other.gameObject.tag == "Spawner")
         {
             Destroy(other.gameObject);
+            audio_source.PlayOneShot(enemy_kill_clip);
+            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
+            Timer_Controller.time_remaining += 3f;
         }
     }
 

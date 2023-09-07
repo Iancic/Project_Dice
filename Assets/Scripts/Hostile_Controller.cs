@@ -43,14 +43,12 @@ public class Hostile_Controller : MonoBehaviour
 
     public IEnumerator MovementEnemy()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1f);
 
         if (Vector3.Distance(hostile_pos.position, movePoint.position) <= 0.5f)
         {
             for (int i = 1; i <= slideValue; i++)
             {
-                Debug.Log("rules");
-                yield return new WaitForSeconds(0.3f);
                 if (Mathf.Abs(distance_x) >= 0.2f)
                 {
                     if (distance_x < 0f)
@@ -59,7 +57,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position += new Vector3(1f, 0f, 0f);
                         }
-                        yield return new WaitForSeconds(0.3f);
+                        yield return new WaitForSeconds(0.2f);
                     }
 
                     else if (distance_x > 0f)
@@ -68,7 +66,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position -= new Vector3(1f, 0f, 0f);
                         }
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.2f);
                     }
                 }
 
@@ -80,7 +78,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position += new Vector3(0f, 1f, 0f);
                         }
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.2f);
                     }
 
                     else if (distance_y > 0f)
@@ -89,7 +87,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position -= new Vector3(0f, 1f, 0f);
                         }
-                        yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.2f);
                     }
                 }
 

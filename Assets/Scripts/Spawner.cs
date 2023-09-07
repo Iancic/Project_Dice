@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
         if (cooldown <= 0)
         {
             Instantiate(toSpawn, new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), Quaternion.identity);
-            cooldown = 3;
+            cooldown = 2;
         }
     }
 }
