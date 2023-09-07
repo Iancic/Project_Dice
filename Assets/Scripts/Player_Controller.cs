@@ -10,8 +10,10 @@ public class Player_Controller : MonoBehaviour
     //stage counter: stage 1 is player stage and stage 2 is enemy stage
     public int stage = 1, round = 1;
 
+    public float streak = 1f;
+
     //player variables
-    public float moveSpeed = 7f; //player moving speed
+    public float moveSpeed = 8f; //player moving speed
     public Transform player_pos;
     public Transform movePoint; //target
     public SpriteRenderer sprite_renderer;
@@ -83,7 +85,8 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             audio_source.PlayOneShot(enemy_kill_clip);
             StartCoroutine(Camera_Prop.Shake_Camera(.15f, .4f));
-            Timer_Controller.time_remaining += 1f;
+            streak = streak + 0.2f;
+            Timer_Controller.time_remaining += 0.25f * streak;
         }
 
         if (other.gameObject.tag == "Spawner")
@@ -91,7 +94,8 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             audio_source.PlayOneShot(enemy_kill_clip);
             StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
-            Timer_Controller.time_remaining += 3f;
+            streak = streak + 1f;
+            Timer_Controller.time_remaining += 1f * streak;
         }
     }
 

@@ -16,6 +16,11 @@ public class Timer_Controller : MonoBehaviour
 
     void Update()
     {
+        if (time_remaining > max_time) 
+        {
+            time_remaining = max_time;
+        }
+
         if (time_remaining > 0)
         {
             time_remaining -= Time.deltaTime;
