@@ -4,6 +4,7 @@ using UnityEngine;
 public class Streak_UI : MonoBehaviour
 {
     public TMP_Text text;
+    public float number, rounded_number;
 
     void Start()
     {
@@ -12,6 +13,8 @@ public class Streak_UI : MonoBehaviour
 
     void Update()
     {
-        text.SetText("X " + Player_Controller.Instance.streak.ToString());
+        number = Player_Controller.Instance.streak;
+        rounded_number = Mathf.Round(number * 100) / 100;
+        text.SetText("X " + rounded_number.ToString());
     }
 }

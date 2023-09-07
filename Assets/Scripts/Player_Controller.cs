@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player_Controller : MonoBehaviour
@@ -11,6 +12,7 @@ public class Player_Controller : MonoBehaviour
     public int stage = 1, round = 1;
 
     public float streak = 1f;
+    public float start_round_streak;
 
     //player variables
     public float moveSpeed = 8f; //player moving speed
@@ -48,12 +50,15 @@ public class Player_Controller : MonoBehaviour
             Instance = this;
         }
     }
+    //Singleton Workflow
 
     void Start()
     {
         player_pos = GetComponent<Transform>();
         sprite_renderer = GetComponent<SpriteRenderer>(); 
+
         movePoint.parent = null;
+        //Movement related object deparenting for proper follow.
     }
 
     void Update()
@@ -61,9 +66,11 @@ public class Player_Controller : MonoBehaviour
         SpriteRefresher();
         //Always displays the right sprites based on the upward face.
 
+
         player_pos.position = Vector3.MoveTowards(player_pos.position, movePoint.position, moveSpeed * Time.deltaTime);
         //The player always move to the target position. We don't move the player we move the target, the player will follow it. I can make this slower by doing this moveSpeed/2.
         
+
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1)
         {
             for (int i = 0; i <= 3; i++)
@@ -76,6 +83,24 @@ public class Player_Controller : MonoBehaviour
         }
         //Disables the directions when moving.
 
+
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
+        {
+            if (start_round_streak == streak)
+            {
+                streak = 1f;
+            }
+        }
+        //Keeps track of player streak
+
+
+        GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        int number_of_spawners = spawners.Length;
+
+        if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0)
+            Floor_Selector.NextScene();
+        //Algorithm for switching to the next scene
+
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -86,7 +111,7 @@ public class Player_Controller : MonoBehaviour
             audio_source.PlayOneShot(enemy_kill_clip);
             StartCoroutine(Camera_Prop.Shake_Camera(.15f, .4f));
             streak = streak + 0.2f;
-            Timer_Controller.time_remaining += 0.25f * streak;
+            Timer_Controller.time_remaining += 0.5f * streak;
         }
 
         if (other.gameObject.tag == "Spawner")
@@ -95,12 +120,19 @@ public class Player_Controller : MonoBehaviour
             audio_source.PlayOneShot(enemy_kill_clip);
             StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
             streak = streak + 1f;
-            Timer_Controller.time_remaining += 1f * streak;
+            Timer_Controller.time_remaining += 2f * streak;
+        }
+
+        if ( other.gameObject.tag == "Intro")
+        {
+            Floor_Selector.NextScene();
         }
     }
+    //Collision Workflow
 
     public void moveLeft()
     {
+        start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
@@ -140,6 +172,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveRight()
     {
+        start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
         {
@@ -179,6 +212,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveDown()
     {
+        start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
@@ -217,6 +251,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveUp()
     {
+        start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {

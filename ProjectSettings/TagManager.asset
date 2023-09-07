@@ -11,6 +11,7 @@ TagManager:
   - Smashable
   - Spawner
   - Enemy
+  - Intro
   layers:
   - Default
   - TransparentFX
@@ -51,9 +52,6 @@ TagManager:
   - name: tilemap
     uniqueID: 2299010997
     locked: 0
-  - name: obstacles
-    uniqueID: 596105861
-    locked: 0
   - name: items
     uniqueID: 3280717983
     locked: 0
@@ -68,6 +66,9 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 1140676881
+    locked: 0
+  - name: obstacles
+    uniqueID: 596105861
     locked: 0
   - name: UI
     uniqueID: 4051769561
