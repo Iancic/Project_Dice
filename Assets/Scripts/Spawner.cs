@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     public GameObject toSpawn;
     public bool executie = false;
     public Transform spawner;
+    private int cooldown = 0;
 
     void Start()
     {
@@ -28,6 +29,11 @@ public class Spawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Instantiate(toSpawn, new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), Quaternion.identity);
+        cooldown -= 1;
+        if (cooldown <= 0)
+        {
+            Instantiate(toSpawn, new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), Quaternion.identity);
+            cooldown = 3;
+        }
     }
 }

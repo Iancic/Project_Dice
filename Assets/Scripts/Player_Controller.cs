@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Player_Controller : MonoBehaviour
 {
     public static Player_Controller Instance { get; private set; }
+    public Camera_Controller Camera_Prop;
 
     //stage counter: stage 1 is player stage and stage 2 is enemy stage
     public int stage = 1, round = 1;
@@ -29,6 +30,10 @@ public class Player_Controller : MonoBehaviour
 
     public LayerMask whatStopsMovement;
     public int upwardFace = 1;
+
+    //Audio
+    public AudioSource audio_source;
+    public AudioClip enemy_kill_clip;
 
     private void Awake()
     {
@@ -73,9 +78,11 @@ public class Player_Controller : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.gameObject.tag == "Enemy" && stage == 1)
+        if ( other.gameObject.tag == "Enemy" )
         {
             Destroy(other.gameObject);
+            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .4f));
+            audio_source.PlayOneShot(enemy_kill_clip);
         }
 
         if (other.gameObject.tag == "Spawner")

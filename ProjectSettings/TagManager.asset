@@ -51,11 +51,20 @@ TagManager:
   - name: tilemap
     uniqueID: 2299010997
     locked: 0
-  - name: directions
-    uniqueID: 3933693367
-    locked: 0
   - name: obstacles
     uniqueID: 596105861
+    locked: 0
+  - name: items
+    uniqueID: 3280717983
+    locked: 0
+  - name: spawner
+    uniqueID: 3536903979
+    locked: 0
+  - name: enemy
+    uniqueID: 2656183605
+    locked: 0
+  - name: directions
+    uniqueID: 3933693367
     locked: 0
   - name: player
     uniqueID: 1140676881
