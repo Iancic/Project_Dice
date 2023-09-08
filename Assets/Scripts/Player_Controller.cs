@@ -39,6 +39,9 @@ public class Player_Controller : MonoBehaviour
     public AudioSource audio_source;
     public AudioClip enemy_kill_clip;
 
+    //Particle System
+    public ParticleSystem death_splash;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -108,8 +111,9 @@ public class Player_Controller : MonoBehaviour
         if ( other.gameObject.tag == "Enemy" )
         {
             Destroy(other.gameObject);
+            death_splash.Play();
             audio_source.PlayOneShot(enemy_kill_clip);
-            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .4f));
+            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
             streak = streak + 0.2f;
             Timer_Controller.time_remaining += 0.5f * streak;
         }
@@ -117,6 +121,7 @@ public class Player_Controller : MonoBehaviour
         if (other.gameObject.tag == "Spawner")
         {
             Destroy(other.gameObject);
+            death_splash.Play();
             audio_source.PlayOneShot(enemy_kill_clip);
             StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
             streak = streak + 1f;
