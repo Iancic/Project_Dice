@@ -15,6 +15,6 @@ public class Streak_UI : MonoBehaviour
     {
         number = Player_Controller.Instance.streak;
         rounded_number = Mathf.Round(number * 100) / 100;
-        text.SetText("X " + rounded_number.ToString());
+        text.SetText("X" + rounded_number.ToString());
     }
 }
