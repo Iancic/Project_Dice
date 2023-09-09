@@ -15,7 +15,7 @@ public class Player_Controller : MonoBehaviour
     public float start_round_streak;
 
     //player variables
-    public float moveSpeed = 8f; //player moving speed
+    public float moveSpeed = 10f; //player moving speed
     public Transform player_pos;
     public Transform movePoint; //target
     public SpriteRenderer sprite_renderer;
@@ -37,10 +37,10 @@ public class Player_Controller : MonoBehaviour
 
     //Audio
     public AudioSource audio_source;
-    public AudioClip enemy_kill_clip;
+    public AudioClip enemy_kill_clip, player_walk_clip, freeze_time_clip, enemy_spawn_kill_clip;
 
     //Particle System
-    public ParticleSystem death_splash;
+    public ParticleSystem enemy_kill_particles;
 
     private void Awake()
     {
@@ -71,7 +71,7 @@ public class Player_Controller : MonoBehaviour
 
 
         player_pos.position = Vector3.MoveTowards(player_pos.position, movePoint.position, moveSpeed * Time.deltaTime);
-        //The player always move to the target position. We don't move the player we move the target, the player will follow it. I can make this slower by doing this moveSpeed/2.
+        //The player always move to the target position. We don't move the player we move the target, the player will follow it.
         
 
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1)
@@ -111,21 +111,24 @@ public class Player_Controller : MonoBehaviour
         if ( other.gameObject.tag == "Enemy" )
         {
             Destroy(other.gameObject);
-            death_splash.Play();
             audio_source.PlayOneShot(enemy_kill_clip);
-            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
+            enemy_kill_particles.Play();
+            StartCoroutine(Camera_Prop.Shake_Camera(.25f, .15f));
             streak = streak + 0.2f;
             Timer_Controller.time_remaining += 0.5f * streak;
+            //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
         }
 
         if (other.gameObject.tag == "Spawner")
         {
             Destroy(other.gameObject);
-            death_splash.Play();
             audio_source.PlayOneShot(enemy_kill_clip);
-            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
+            enemy_kill_particles.Play();
+            StartCoroutine(Camera_Prop.Shake_Camera(.25f, .15f));
             streak = streak + 1f;
             Timer_Controller.time_remaining += 2f * streak;
+            audio_source.PlayOneShot(enemy_spawn_kill_clip);
+            //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
         }
 
         if ( other.gameObject.tag == "Intro")
@@ -137,6 +140,7 @@ public class Player_Controller : MonoBehaviour
 
     public void moveLeft()
     {
+        audio_source.PlayOneShot(player_walk_clip);
         start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)

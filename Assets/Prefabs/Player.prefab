@@ -655,8 +655,11 @@ MonoBehaviour:
     m_Bits: 64
   upwardFace: 6
   audio_source: {fileID: 6352426265744252577}
-  enemy_kill_clip: {fileID: 8300000, guid: 10f24314087a71943a987c4e64178572, type: 3}
-  death_splash: {fileID: 7184698161831490822}
+  enemy_kill_clip: {fileID: 8300000, guid: 4adc20254a7f3654a9e30bb1462267c2, type: 3}
+  player_walk_clip: {fileID: 8300000, guid: 72dea6f59acb9b64592317a1e577fce8, type: 3}
+  freeze_time_clip: {fileID: 8300000, guid: c82eca7f807c16749a7d5ff8040c2ed9, type: 3}
+  enemy_spawn_kill_clip: {fileID: 8300000, guid: f92ab8188e4c7f1469e7b43b266c67e9, type: 3}
+  enemy_kill_particles: {fileID: 7184698161831490822}
 --- !u!61 &2812819204325665069
 BoxCollider2D:
   m_ObjectHideFlags: 0
