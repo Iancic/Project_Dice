@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -138,9 +138,8 @@ public class Player_Controller : MonoBehaviour
     }
     //Collision Workflow
 
-    public void moveLeft()
+    public IEnumerator moveLeft()
     {
-        audio_source.PlayOneShot(player_walk_clip);
         start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
@@ -149,8 +148,10 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), .2f, whatStopsMovement))
                 {
+                    audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position -= new Vector3(1f, 0f, 0f);
                 }
+                yield return new WaitForSeconds(0.25f);
             }
         } 
 
@@ -179,7 +180,7 @@ public class Player_Controller : MonoBehaviour
         stage = 2;
     }
 
-    public void moveRight()
+    public IEnumerator moveRight()
     {
         start_round_streak = streak;
         round += 1;
@@ -189,8 +190,10 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, whatStopsMovement))
                 {
+                    audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position += new Vector3(1f, 0f, 0f);
                 }
+                yield return new WaitForSeconds(0.25f);
             }
         }
 
@@ -219,7 +222,7 @@ public class Player_Controller : MonoBehaviour
         stage = 2;
     }
 
-    public void moveDown()
+    public IEnumerator moveDown()
     {
         start_round_streak = streak;
         round += 1;
@@ -229,8 +232,10 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), .2f, whatStopsMovement))
                 {
+                    audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position -= new Vector3(0f, 1f, 0f);
                 }
+                yield return new WaitForSeconds(0.25f);
             }   
         }
 
@@ -258,7 +263,7 @@ public class Player_Controller : MonoBehaviour
         stage = 2;
     }
 
-    public void moveUp()
+    public IEnumerator moveUp()
     {
         start_round_streak = streak;
         round += 1;
@@ -268,8 +273,10 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, whatStopsMovement))
                 {
+                    audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position += new Vector3(0f, 1f, 0f);
                 }
+                yield return new WaitForSeconds(0.25f);
             }
         }
 

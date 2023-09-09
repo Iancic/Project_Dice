@@ -7,9 +7,4 @@ public class Floor_Selector : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
-    public void ResetGame() 
-    { 
-
-    }
 }

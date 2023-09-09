@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class Movement_Controller : MonoBehaviour
 {
@@ -20,15 +21,15 @@ public class Movement_Controller : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (hit.collider != null && hit.collider.gameObject == gameObject) 
-            { 
-                if(CompareTag("left"))
-                    left_event.Invoke();
+            {
+                if (CompareTag("left"))
+                    StartCoroutine(Player_Controller.Instance.moveLeft());
                 else if (CompareTag("right"))
-                    right_event.Invoke();
+                    StartCoroutine(Player_Controller.Instance.moveRight());
                 else if (CompareTag("down"))
-                    down_event.Invoke();
+                    StartCoroutine(Player_Controller.Instance.moveDown());
                 else if (CompareTag("up"))
-                    up_event.Invoke();
+                    StartCoroutine(Player_Controller.Instance.moveUp());
             }
         }
     }

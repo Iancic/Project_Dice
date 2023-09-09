@@ -656,7 +656,7 @@ MonoBehaviour:
   upwardFace: 6
   audio_source: {fileID: 6352426265744252577}
   enemy_kill_clip: {fileID: 8300000, guid: 4adc20254a7f3654a9e30bb1462267c2, type: 3}
-  player_walk_clip: {fileID: 8300000, guid: 72dea6f59acb9b64592317a1e577fce8, type: 3}
+  player_walk_clip: {fileID: 8300000, guid: fba21d9bd5dadeb4584d3a1c9a4b9b46, type: 3}
   freeze_time_clip: {fileID: 8300000, guid: c82eca7f807c16749a7d5ff8040c2ed9, type: 3}
   enemy_spawn_kill_clip: {fileID: 8300000, guid: f92ab8188e4c7f1469e7b43b266c67e9, type: 3}
   enemy_kill_particles: {fileID: 7184698161831490822}
@@ -944,9 +944,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 4
+      minMaxState: 3
+      scalar: 9
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1116,7 +1116,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.18
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -1580,7 +1580,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 1.5
       mode: 0
       spread: 0
       speed:
@@ -1809,7 +1809,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 25
+        scalar: 15
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1863,7 +1863,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1874,18 +1874,18 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
+          value: 1
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 1
+          time: 0.9938965
+          value: 0
           inSlope: 1
-          outSlope: 0
+          outSlope: 1
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
@@ -4706,7 +4706,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 0
+    enabled: 1
     ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
