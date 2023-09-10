@@ -151,7 +151,7 @@ public class Player_Controller : MonoBehaviour
                     audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position -= new Vector3(1f, 0f, 0f);
                 }
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.2f);
             }
         } 
 
@@ -193,7 +193,7 @@ public class Player_Controller : MonoBehaviour
                     audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position += new Vector3(1f, 0f, 0f);
                 }
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
@@ -235,7 +235,7 @@ public class Player_Controller : MonoBehaviour
                     audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position -= new Vector3(0f, 1f, 0f);
                 }
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.2f);
             }   
         }
 
@@ -276,7 +276,7 @@ public class Player_Controller : MonoBehaviour
                     audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position += new Vector3(0f, 1f, 0f);
                 }
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
 
@@ -391,6 +391,11 @@ public class Player_Controller : MonoBehaviour
             dir_movement_right = 4f;
             dir_movement_up = 5f;
         }
+    }
+
+    public void KillPlayer()
+    {
+        Destroy(this.gameObject);
     }
 
 }

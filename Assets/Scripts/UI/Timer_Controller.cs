@@ -7,7 +7,7 @@ public class Timer_Controller : MonoBehaviour
     public Image timer;
 
     static public float time_remaining;
-    private float max_time = 10f;
+    private float max_time = 15f;
 
     void Start()
     {
@@ -31,6 +31,7 @@ public class Timer_Controller : MonoBehaviour
         {
             Lose_Screen.SetActive(true);
             Game_Screen.SetActive(false);
+            Player_Controller.Instance.KillPlayer();
         }
     }
 }
