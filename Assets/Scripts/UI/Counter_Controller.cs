@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Counter_Controller : MonoBehaviour
