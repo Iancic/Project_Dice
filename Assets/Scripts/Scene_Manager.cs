@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Advertisements;
+using System.Collections;
 
 public class Scene_Manager : MonoBehaviour
 {
@@ -21,6 +21,12 @@ public class Scene_Manager : MonoBehaviour
         }
     }
     //Singleton Workflow
+
+    public IEnumerator Intro()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     public void NextScene()
     {

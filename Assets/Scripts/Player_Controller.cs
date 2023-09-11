@@ -101,7 +101,9 @@ public class Player_Controller : MonoBehaviour
         int number_of_spawners = spawners.Length;
 
         if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0)
-            Scene_Manager.Instance.NextScene();
+            Scene_Manager.Instance.ReloadScene();
+        //TEMPORARY FOR PLAYTESTING
+        //Scene_Manager.Instance.NextScene();
         //Algorithm for switching to the next scene
 
     }
@@ -115,7 +117,7 @@ public class Player_Controller : MonoBehaviour
             enemy_kill_particles.Play();
             StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
             streak = streak + 0.5f;
-            Timer_Controller.time_remaining += 1 * streak;
+            Timer_Controller.time_remaining += 0.25f * streak;
             //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
         }
 
@@ -133,7 +135,7 @@ public class Player_Controller : MonoBehaviour
 
         if ( other.gameObject.tag == "Intro")
         {
-            Scene_Manager.Instance.NextScene();
+            StartCoroutine(Scene_Manager.Instance.Intro());
         }
     }
     //Collision Workflow
