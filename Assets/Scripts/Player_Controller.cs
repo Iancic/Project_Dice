@@ -113,9 +113,9 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             audio_source.PlayOneShot(enemy_kill_clip);
             enemy_kill_particles.Play();
-            StartCoroutine(Camera_Prop.Shake_Camera(.25f, .15f));
-            streak = streak + 0.2f;
-            Timer_Controller.time_remaining += 0.5f * streak;
+            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
+            streak = streak + 0.5f;
+            Timer_Controller.time_remaining += 1 * streak;
             //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
         }
 
@@ -124,7 +124,7 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             audio_source.PlayOneShot(enemy_kill_clip);
             enemy_kill_particles.Play();
-            StartCoroutine(Camera_Prop.Shake_Camera(.25f, .15f));
+            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
             streak = streak + 1f;
             Timer_Controller.time_remaining += 2f * streak;
             audio_source.PlayOneShot(enemy_spawn_kill_clip);
@@ -138,8 +138,9 @@ public class Player_Controller : MonoBehaviour
     }
     //Collision Workflow
 
-    public IEnumerator moveLeft()
+    public void moveLeft()
     {
+        audio_source.PlayOneShot(player_walk_clip);
         start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
@@ -148,11 +149,8 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(-1f, 0f, 0f), .2f, whatStopsMovement))
                 {
-                    if (i % 2 == 1)
-                        audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position -= new Vector3(1f, 0f, 0f);
                 }
-                yield return new WaitForSeconds(0.2f);
             }
         } 
 
@@ -181,8 +179,9 @@ public class Player_Controller : MonoBehaviour
         stage = 2;
     }
 
-    public IEnumerator moveRight()
+    public void moveRight()
     {
+        audio_source.PlayOneShot(player_walk_clip);
         start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= .05f)
@@ -191,11 +190,8 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(1f, 0f, 0f), .2f, whatStopsMovement))
                 {
-                    if (i % 2 == 1)
-                        audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position += new Vector3(1f, 0f, 0f);
                 }
-                yield return new WaitForSeconds(0.2f);
             }
         }
 
@@ -224,8 +220,9 @@ public class Player_Controller : MonoBehaviour
         stage = 2;
     }
 
-    public IEnumerator moveDown()
+    public void moveDown()
     {
+        audio_source.PlayOneShot(player_walk_clip);
         start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
@@ -234,11 +231,8 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, -1f, 0f), .2f, whatStopsMovement))
                 {
-                    if (i % 2 == 1)
-                        audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position -= new Vector3(0f, 1f, 0f);
                 }
-                yield return new WaitForSeconds(0.2f);
             }   
         }
 
@@ -266,8 +260,9 @@ public class Player_Controller : MonoBehaviour
         stage = 2;
     }
 
-    public IEnumerator moveUp()
+    public void moveUp()
     {
+        audio_source.PlayOneShot(player_walk_clip);
         start_round_streak = streak;
         round += 1;
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
@@ -276,11 +271,8 @@ public class Player_Controller : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, whatStopsMovement))
                 {
-                    if (i % 2 == 1)
-                        audio_source.PlayOneShot(player_walk_clip);
                     movePoint.position += new Vector3(0f, 1f, 0f);
                 }
-                yield return new WaitForSeconds(0.2f);
             }
         }
 

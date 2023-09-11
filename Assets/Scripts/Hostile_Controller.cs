@@ -43,7 +43,7 @@ public class Hostile_Controller : MonoBehaviour
 
     public IEnumerator MovementEnemy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         if (Vector3.Distance(hostile_pos.position, movePoint.position) <= 0.5f)
         {
@@ -57,7 +57,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position += new Vector3(1f, 0f, 0f);
                         }
-                        yield return new WaitForSeconds(0.2f);
+                        yield return new WaitForSeconds(0.15f);
                     }
 
                     else if (distance_x > 0f)
@@ -66,7 +66,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position -= new Vector3(1f, 0f, 0f);
                         }
-                        yield return new WaitForSeconds(0.2f);
+                        yield return new WaitForSeconds(0.15f);
                     }
                 }
 
@@ -78,7 +78,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position += new Vector3(0f, 1f, 0f);
                         }
-                        yield return new WaitForSeconds(0.2f);
+                        yield return new WaitForSeconds(0.15f);
                     }
 
                     else if (distance_y > 0f)
@@ -87,7 +87,7 @@ public class Hostile_Controller : MonoBehaviour
                         {
                             movePoint.position -= new Vector3(0f, 1f, 0f);
                         }
-                        yield return new WaitForSeconds(0.2f);
+                        yield return new WaitForSeconds(0.15f);
                     }
                 }
 

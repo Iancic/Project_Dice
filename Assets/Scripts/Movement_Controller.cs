@@ -23,13 +23,13 @@ public class Movement_Controller : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject == gameObject) 
             {
                 if (CompareTag("left"))
-                    StartCoroutine(Player_Controller.Instance.moveLeft());
+                    left_event.Invoke();
                 else if (CompareTag("right"))
-                    StartCoroutine(Player_Controller.Instance.moveRight());
+                    right_event.Invoke();
                 else if (CompareTag("down"))
-                    StartCoroutine(Player_Controller.Instance.moveDown());
+                    down_event.Invoke();
                 else if (CompareTag("up"))
-                    StartCoroutine(Player_Controller.Instance.moveUp());
+                    up_event.Invoke();
             }
         }
     }
