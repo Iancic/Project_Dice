@@ -31,6 +31,7 @@ public class Scene_Manager : MonoBehaviour
     public void NextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Player_Controller.Instance.bits_bank = Player_Controller.Instance.bits;
     }
 
     public void MainMenu()

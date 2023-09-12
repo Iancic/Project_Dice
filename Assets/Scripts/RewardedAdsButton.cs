@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using System.Collections;
 
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
@@ -20,12 +21,17 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 
         // Disable the button until the ad is ready to show:
         _showAdButton.interactable = false;
-        LoadAd();
+    }
+
+    void Start()
+    {
+        StartCoroutine(LoadAd());
     }
 
     // Call this public method when you want to get an ad ready to show.
-    public void LoadAd()
+    public IEnumerator LoadAd()
     {
+        yield return new WaitForSeconds(1f);
         // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
         Debug.Log("Loading Ad: " + _adUnitId);
         Advertisement.Load(_adUnitId, this);
@@ -60,7 +66,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
-            // Grant a reward.
+            Player_Controller.Instance.bits += 5000;
         }
     }
 

@@ -47,6 +47,7 @@ public class Timer_Controller : MonoBehaviour
 
         else
         {
+            Player_Controller.Instance.bits_bank += Player_Controller.Instance.bits;
             Lose_Screen.SetActive(true);
             Game_Screen.SetActive(false);
             Player_Controller.Instance.DisableDirections();

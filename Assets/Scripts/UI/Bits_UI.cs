@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Rounds_UI : MonoBehaviour
+public class Bits_UI : MonoBehaviour
 {
     public TMP_Text text;
-    
+
     void Start()
     {
         text = GetComponent<TMP_Text>();
@@ -12,6 +13,6 @@ public class Rounds_UI : MonoBehaviour
 
     void Update()
     {
-        text.SetText("Round " + " " + Player_Controller.Instance.round.ToString());
+        text.SetText("Bits " + Player_Controller.Instance.bits.ToString());
     }
 }

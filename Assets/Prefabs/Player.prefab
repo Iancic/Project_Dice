@@ -617,6 +617,8 @@ MonoBehaviour:
   Camera_Prop: {fileID: 0}
   stage: 1
   round: 1
+  bits: 0
+  bits_bank: 0
   streak: 1
   start_round_streak: 0
   moveSpeed: 5
