@@ -25,7 +25,12 @@ public class Scene_Manager : MonoBehaviour
     public IEnumerator Intro()
     {
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Level Selector");
+    }
+
+    public void Endless()
+    {
+        SceneManager.LoadScene("Endless Mode");
     }
 
     public void NextScene()
