@@ -12,6 +12,7 @@ TagManager:
   - Spawner
   - Enemy
   - Intro
+  - Freezer
   layers:
   - Default
   - TransparentFX

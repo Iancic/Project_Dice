@@ -9,9 +9,9 @@ public class Timer_Controller : MonoBehaviour
     public Image timer;
 
     static public float time_remaining;
-    private float max_time = 10f;
+    private float max_time = 20f;
 
-    public int gamePaused = 0;
+    public int gamePaused = 0, gameFreeze = 0;
     // 0 is playing, 1 is paused.
 
     private void Awake()
@@ -39,13 +39,13 @@ public class Timer_Controller : MonoBehaviour
             time_remaining = max_time;
         }
 
-        if (time_remaining > 0 && gamePaused == 0)
+        if (time_remaining > 0 && gamePaused == 0 && gameFreeze == 0) 
         {
             time_remaining -= Time.deltaTime;
             timer.fillAmount = time_remaining / max_time;
         }
 
-        else
+        else if (time_remaining <= 0 && gamePaused == 1)
         {
             Player_Controller.Instance.bits_bank += Player_Controller.Instance.bits;
             Lose_Screen.SetActive(true);

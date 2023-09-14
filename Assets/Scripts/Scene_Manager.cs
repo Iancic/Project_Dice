@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Scene_Manager : MonoBehaviour
 {
@@ -28,20 +29,38 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene("Level Selector");
     }
 
-    public void Endless()
-    {
-        SceneManager.LoadScene("Endless Mode");
-    }
-
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int level = Random.Range(3, 4);
+        switch (level)
+        {
+            case 3:
+                SceneManager.LoadScene("Level_3");
+                break;
+            case 4:
+                SceneManager.LoadScene("Level_4");
+                break;
+            case 5:
+                SceneManager.LoadScene("Level_5");
+                break;
+            case 6:
+                SceneManager.LoadScene("Level_6");
+                break;
+            case 7:
+                SceneManager.LoadScene("Level_7");
+                break;
+        }
         Player_Controller.Instance.bits_bank = Player_Controller.Instance.bits;
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("Intro");
+    }
+
+    public void Shop()
+    {
+        SceneManager.LoadScene("Shop");
     }
 
     public void ReloadScene()

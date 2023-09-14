@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6383564579511813000}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: movePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 631396646384658510}
   - component: {fileID: 1256045497216254824}
   - component: {fileID: 6354199270466837644}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

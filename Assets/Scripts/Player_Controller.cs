@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,10 +7,11 @@ using UnityEngine.UI;
 public class Player_Controller : MonoBehaviour
 {
     public static Player_Controller Instance { get; private set; }
-    public Camera_Controller Camera_Prop;
 
     //stage counter: stage 1 is player stage and stage 2 is enemy stage
     public int stage = 1, round = 1;
+
+    private float countdownTime = 5f;
 
     //currency
     public float bits = 0f;
@@ -41,10 +43,14 @@ public class Player_Controller : MonoBehaviour
 
     //Audio
     public AudioSource audio_source;
-    public AudioClip enemy_kill_clip, player_walk_clip, freeze_time_clip, enemy_spawn_kill_clip;
+    public AudioClip enemy_kill_clip, player_walk_clip, freeze_time_clip, enemy_spawn_kill_clip, freezer_clip;
 
     //Particle System
     public ParticleSystem enemy_kill_particles;
+
+    public CinemachineVirtualCamera virtualCamera;
+    public float zoomedInFOV = 40f;
+    private float originalFOV;
 
     private void Awake()
     {
@@ -66,6 +72,8 @@ public class Player_Controller : MonoBehaviour
 
         movePoint.parent = null;
         //Movement related object deparenting for proper follow.
+
+        originalFOV = virtualCamera.m_Lens.FieldOfView;
     }
 
     void Update()
@@ -119,9 +127,9 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             audio_source.PlayOneShot(enemy_kill_clip);
             enemy_kill_particles.Play();
-            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
-            streak = streak + 0.25f;
-            Timer_Controller.time_remaining += 0.25f * streak;
+            CinemachineShake.Instance.ShakeCamera(10f, .125f);
+            streak = streak + 0.20f;
+            Timer_Controller.time_remaining += 0.15f * streak;
             bits += 50f;
             //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
         }
@@ -131,9 +139,9 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             audio_source.PlayOneShot(enemy_kill_clip);
             enemy_kill_particles.Play();
-            StartCoroutine(Camera_Prop.Shake_Camera(.15f, .8f));
+            CinemachineShake.Instance.ShakeCamera(10f, .125f);
             streak = streak + 1f;
-            Timer_Controller.time_remaining += 2f * streak;
+            Timer_Controller.time_remaining += 1f * streak;
             audio_source.PlayOneShot(enemy_spawn_kill_clip);
             bits += 100f;
             //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
@@ -141,10 +149,34 @@ public class Player_Controller : MonoBehaviour
 
         if ( other.gameObject.tag == "Intro")
         {
-            StartCoroutine(Scene_Manager.Instance.Intro());
+            Scene_Manager.Instance.NextScene();
+        }
+
+        if (other.gameObject.tag == "Freezer")
+        {
+            Destroy(other.gameObject);
+            audio_source.PlayOneShot(freezer_clip);
+            StartCoroutine(FreezeFunct());
         }
     }
     //Collision Workflow
+
+    public IEnumerator FreezeFunct()
+    {
+        Timer_Controller.Instance.gameFreeze = 1;
+        float countdownTime = 5f; // Set the initial countdown time to 5 seconds.
+
+        while (countdownTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            countdownTime -= 1f;
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(originalFOV, zoomedInFOV, 0.1f);
+        }
+
+        // Countdown is complete.
+        Timer_Controller.Instance.gameFreeze = 0;
+        virtualCamera.m_Lens.FieldOfView = originalFOV;
+    }
 
     public void moveLeft()
     {
