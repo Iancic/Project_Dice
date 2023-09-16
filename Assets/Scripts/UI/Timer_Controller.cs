@@ -34,6 +34,8 @@ public class Timer_Controller : MonoBehaviour
 
     void Update()
     {
+        timer.fillAmount = time_remaining / max_time;
+
         if (time_remaining > max_time) 
         {
             time_remaining = max_time;
@@ -42,12 +44,10 @@ public class Timer_Controller : MonoBehaviour
         if (time_remaining > 0 && gamePaused == 0 && gameFreeze == 0) 
         {
             time_remaining -= Time.deltaTime;
-            timer.fillAmount = time_remaining / max_time;
         }
 
         else if (time_remaining <= 0 && gamePaused == 1)
         {
-            Player_Controller.Instance.bits_bank += Player_Controller.Instance.bits;
             Lose_Screen.SetActive(true);
             Game_Screen.SetActive(false);
             Player_Controller.Instance.DisableDirections();

@@ -50,7 +50,6 @@ public class Scene_Manager : MonoBehaviour
                 SceneManager.LoadScene("Level_7");
                 break;
         }
-        Player_Controller.Instance.bits_bank = Player_Controller.Instance.bits;
     }
 
     public void MainMenu()

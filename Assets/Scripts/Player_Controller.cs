@@ -13,10 +13,6 @@ public class Player_Controller : MonoBehaviour
 
     private float countdownTime = 5f;
 
-    //currency
-    public float bits = 0f;
-    public float bits_bank = 0f;
-
     public float streak = 1f;
     public float start_round_streak;
 
@@ -130,8 +126,7 @@ public class Player_Controller : MonoBehaviour
             CinemachineShake.Instance.ShakeCamera(10f, .125f);
             streak = streak + 0.20f;
             Timer_Controller.time_remaining += 0.15f * streak;
-            bits += 50f;
-            //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
+            //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time
         }
 
         if (other.gameObject.tag == "Spawner")
@@ -143,8 +138,7 @@ public class Player_Controller : MonoBehaviour
             streak = streak + 1f;
             Timer_Controller.time_remaining += 1f * streak;
             audio_source.PlayOneShot(enemy_spawn_kill_clip);
-            bits += 100f;
-            //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time, Currency
+            //Destroy, Sound Effect, Particle, Camera Shake, Streak, Time
         }
 
         if ( other.gameObject.tag == "Intro")
@@ -155,27 +149,26 @@ public class Player_Controller : MonoBehaviour
         if (other.gameObject.tag == "Freezer")
         {
             Destroy(other.gameObject);
-            audio_source.PlayOneShot(freezer_clip);
             StartCoroutine(FreezeFunct());
+            audio_source.PlayOneShot(freezer_clip);
         }
     }
     //Collision Workflow
 
     public IEnumerator FreezeFunct()
     {
-        Timer_Controller.Instance.gameFreeze = 1;
-        float countdownTime = 5f; // Set the initial countdown time to 5 seconds.
 
-        while (countdownTime > 0)
+        Timer_Controller.Instance.gameFreeze = 1;
+        float countdownTime = 5f;
+
+        while (countdownTime > 0f)
         {
+            audio_source.PlayOneShot(freezer_clip);
             yield return new WaitForSeconds(1f);
-            countdownTime -= 1f;
-            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(originalFOV, zoomedInFOV, 0.1f);
+            countdownTime -= 1f; 
         }
 
-        // Countdown is complete.
         Timer_Controller.Instance.gameFreeze = 0;
-        virtualCamera.m_Lens.FieldOfView = originalFOV;
     }
 
     public void moveLeft()
@@ -309,7 +302,7 @@ public class Player_Controller : MonoBehaviour
         {
             for (int i = 1; i <= dir_movement_up; i++)
             {
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .2f, whatStopsMovement))
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, 1f, 0f), .05f, whatStopsMovement))
                 {
                     movePoint.position += new Vector3(0f, 1f, 0f);
                 }

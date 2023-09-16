@@ -616,8 +616,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stage: 1
   round: 1
-  bits: 0
-  bits_bank: 0
   streak: 1
   start_round_streak: 0
   moveSpeed: 5
@@ -844,7 +842,7 @@ GameObject:
   - component: {fileID: 7184698161831490822}
   - component: {fileID: 4199659347279069536}
   - component: {fileID: 8915528220118504025}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
