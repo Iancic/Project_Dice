@@ -46,7 +46,7 @@ public class Timer_Controller : MonoBehaviour
             time_remaining -= Time.deltaTime;
         }
 
-        else if (time_remaining <= 0 && gamePaused == 1)
+        else if (time_remaining <= 0)
         {
             Lose_Screen.SetActive(true);
             Game_Screen.SetActive(false);

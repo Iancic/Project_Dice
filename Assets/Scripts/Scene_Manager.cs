@@ -29,6 +29,11 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene("Level Selector");
     }
 
+    public void Level_A()
+    {
+        SceneManager.LoadScene("Level_A");
+    }
+
     public void NextScene()
     {
         int level = Random.Range(3, 4);
@@ -57,9 +62,9 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene("Intro");
     }
 
-    public void Shop()
+    public void Level_Selector()
     {
-        SceneManager.LoadScene("Shop");
+        SceneManager.LoadScene("Level_Selector");
     }
 
     public void ReloadScene()

@@ -143,7 +143,7 @@ public class Player_Controller : MonoBehaviour
 
         if ( other.gameObject.tag == "Intro")
         {
-            Scene_Manager.Instance.NextScene();
+            Scene_Manager.Instance.Level_Selector();
         }
 
         if (other.gameObject.tag == "Freezer")
