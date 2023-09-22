@@ -5,7 +5,7 @@ public class Timer_Controller : MonoBehaviour
 {
     public static Timer_Controller Instance { get; private set; }
 
-    public GameObject Lose_Screen, Game_Screen;
+    public GameObject Lose_Screen, Win_Screen, Game_Screen;
     public Image timer;
 
     static public float time_remaining;
@@ -36,22 +36,35 @@ public class Timer_Controller : MonoBehaviour
     {
         timer.fillAmount = time_remaining / max_time;
 
-        if (time_remaining > max_time) 
+        if (time_remaining > max_time)
         {
             time_remaining = max_time;
         }
 
-        if (time_remaining > 0 && gamePaused == 0 && gameFreeze == 0) 
+        if (time_remaining > 0 && gamePaused == 0 && gameFreeze == 0)
         {
             time_remaining -= Time.deltaTime;
         }
 
         else if (time_remaining <= 0)
         {
-            Lose_Screen.SetActive(true);
-            Game_Screen.SetActive(false);
-            Player_Controller.Instance.DisableDirections();
-            gamePaused = 1;
+            LosePopUp();
         }
+    }
+
+    public void LosePopUp()
+    {
+        Lose_Screen.SetActive(true);
+        Game_Screen.SetActive(false);
+        Player_Controller.Instance.DisableDirections();
+        gamePaused = 1;
+    }
+
+    public void WinPopUp()
+    {
+        Win_Screen.SetActive(true);
+        Game_Screen.SetActive(false);
+        Player_Controller.Instance.DisableDirections();
+        gamePaused = 1;
     }
 }

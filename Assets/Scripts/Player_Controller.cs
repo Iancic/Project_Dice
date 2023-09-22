@@ -68,8 +68,6 @@ public class Player_Controller : MonoBehaviour
 
         movePoint.parent = null;
         //Movement related object deparenting for proper follow.
-
-        originalFOV = virtualCamera.m_Lens.FieldOfView;
     }
 
     void Update()
@@ -109,11 +107,7 @@ public class Player_Controller : MonoBehaviour
         int number_of_spawners = spawners.Length;
 
         if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0)
-            Scene_Manager.Instance.ReloadScene();
-        //TEMPORARY FOR PLAYTESTING
-        //Scene_Manager.Instance.NextScene();
-        //Algorithm for switching to the next scene
-
+            Timer_Controller.Instance.WinPopUp();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -151,6 +145,14 @@ public class Player_Controller : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(FreezeFunct());
             audio_source.PlayOneShot(freezer_clip);
+        }
+
+        if (other.gameObject.tag == "Trap")
+        {
+            Destroy(other.gameObject);
+            CinemachineShake.Instance.ShakeCamera(10f, .200f);
+            Timer_Controller.time_remaining -= 5f;
+            audio_source.PlayOneShot(enemy_spawn_kill_clip);
         }
     }
     //Collision Workflow

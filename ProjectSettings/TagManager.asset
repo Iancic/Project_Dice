@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - Intro
   - Freezer
+  - Trap
   layers:
   - Default
   - TransparentFX

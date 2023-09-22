@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -25,6 +26,12 @@ public class Spawner : MonoBehaviour
             executie = false;
             SpawnEnemy();
         }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        int number_of_enemies = enemies.Length;
+
+        if (number_of_enemies == 0)
+            SpawnEnemy();
     }
 
     public void SpawnEnemy()
