@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
         int number_of_enemies = enemies.Length;
 
         if (number_of_enemies == 0)
-            SpawnEnemy();
+            Instantiate(toSpawn, new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), Quaternion.identity);
     }
 
     public void SpawnEnemy()

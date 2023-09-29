@@ -12,7 +12,7 @@ public class Timer_Controller : MonoBehaviour
     private float max_time = 20f;
 
     public int gamePaused = 0, gameFreeze = 0;
-    // 0 is playing, 1 is paused.
+    // 0 is playing, 1 is paused. // game stage = 4
 
     private void Awake()
     {

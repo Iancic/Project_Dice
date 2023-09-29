@@ -44,9 +44,7 @@ public class Player_Controller : MonoBehaviour
     //Particle System
     public ParticleSystem enemy_kill_particles;
 
-    public CinemachineVirtualCamera virtualCamera;
-    public float zoomedInFOV = 40f;
-    private float originalFOV;
+    public bool tutorial;
 
     private void Awake()
     {
@@ -80,7 +78,7 @@ public class Player_Controller : MonoBehaviour
         //The player always move to the target position. We don't move the player we move the target, the player will follow it.
         
 
-        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1 && Timer_Controller.Instance.gamePaused == 0)
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1 || tutorial == true)
         {
             for (int i = 0; i <= 3; i++)
                 directions[i].SetActive(true);
