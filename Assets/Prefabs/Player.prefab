@@ -660,8 +660,9 @@ MonoBehaviour:
   enemy_spawn_kill_clip: {fileID: 8300000, guid: f92ab8188e4c7f1469e7b43b266c67e9, type: 3}
   freezer_clip: {fileID: 8300000, guid: c82eca7f807c16749a7d5ff8040c2ed9, type: 3}
   enemy_kill_particles: {fileID: 7184698161831490822}
-  virtualCamera: {fileID: 0}
-  zoomedInFOV: 40
+  tutorial: 0
+  teleporter: {fileID: 4291560087722239258, guid: 46015adafbd43d2419cda1f3c4c80e19, type: 3}
+  finish: 0
 --- !u!61 &2812819204325665069
 BoxCollider2D:
   m_ObjectHideFlags: 0

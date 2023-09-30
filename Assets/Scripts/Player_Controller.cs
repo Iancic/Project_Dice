@@ -46,6 +46,9 @@ public class Player_Controller : MonoBehaviour
 
     public bool tutorial;
 
+    public GameObject teleporter;
+    public bool finish  = false;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -78,7 +81,7 @@ public class Player_Controller : MonoBehaviour
         //The player always move to the target position. We don't move the player we move the target, the player will follow it.
         
 
-        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1 || tutorial == true)
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f && stage == 1 || tutorial == true || finish == true)
         {
             for (int i = 0; i <= 3; i++)
                 directions[i].SetActive(true);
@@ -104,8 +107,12 @@ public class Player_Controller : MonoBehaviour
         GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         int number_of_spawners = spawners.Length;
 
-        if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0)
-            Timer_Controller.Instance.WinPopUp();
+        if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0 && finish == false)
+        {
+            Instantiate(teleporter, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity);
+            finish = true;
+            Timer_Controller.Instance.gameFreeze = 1;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -135,7 +142,7 @@ public class Player_Controller : MonoBehaviour
 
         if ( other.gameObject.tag == "Intro")
         {
-            Scene_Manager.Instance.Level_Selector();
+            StartCoroutine(Scene_Manager.Instance.LoadNextScene());
         }
 
         if (other.gameObject.tag == "Freezer")
@@ -151,6 +158,11 @@ public class Player_Controller : MonoBehaviour
             CinemachineShake.Instance.ShakeCamera(10f, .200f);
             Timer_Controller.time_remaining -= 5f;
             audio_source.PlayOneShot(enemy_spawn_kill_clip);
+        }
+
+        if (other.gameObject.tag == "Teleporter")
+        {
+            StartCoroutine(Scene_Manager.Instance.LoadNextScene());
         }
     }
     //Collision Workflow

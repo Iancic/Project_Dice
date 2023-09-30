@@ -59,12 +59,4 @@ public class Timer_Controller : MonoBehaviour
         Player_Controller.Instance.DisableDirections();
         gamePaused = 1;
     }
-
-    public void WinPopUp()
-    {
-        Win_Screen.SetActive(true);
-        Game_Screen.SetActive(false);
-        Player_Controller.Instance.DisableDirections();
-        gamePaused = 1;
-    }
 }
