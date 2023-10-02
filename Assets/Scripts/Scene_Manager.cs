@@ -55,4 +55,16 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Wrapper_Skip_Tutorial()
+    {
+        StartCoroutine(Skip_Tutorial());
+    }
+
+    public IEnumerator Skip_Tutorial()
+    {
+        transEnd.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Level 1");
+    }
+
 }
