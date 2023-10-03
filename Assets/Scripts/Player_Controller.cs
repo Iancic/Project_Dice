@@ -171,7 +171,7 @@ public class Player_Controller : MonoBehaviour
     {
 
         Timer_Controller.Instance.gameFreeze = 1;
-        float countdownTime = 5f;
+        float countdownTime = 3f;
 
         while (countdownTime > 0f)
         {

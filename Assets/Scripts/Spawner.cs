@@ -30,6 +30,7 @@ public class Spawner : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         int number_of_enemies = enemies.Length;
 
+        Debug.Log(number_of_enemies);
         if (number_of_enemies == 0)
             Instantiate(toSpawn, new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), Quaternion.identity);
     }

@@ -8245,7 +8245,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 18
-      m_TileSpriteIndex: 18
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 3
       m_TileObjectToInstantiateIndex: 65535
@@ -13482,12 +13482,12 @@ Tilemap:
     m_Data: {fileID: -302747891, guid: f54b78b3e0e1e4f4fbc9296ed13222d6, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 353208453, guid: f54b78b3e0e1e4f4fbc9296ed13222d6, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: -2092261216, guid: f54b78b3e0e1e4f4fbc9296ed13222d6, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: -2092261216, guid: f54b78b3e0e1e4f4fbc9296ed13222d6, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 353208453, guid: f54b78b3e0e1e4f4fbc9296ed13222d6, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1318
     m_Data:
@@ -15681,10 +15681,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1237796064}
     m_Modifications:
-    - target: {fileID: 882153923533274865, guid: 909aadbfb6e2d9a44ba4665e654ae06a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1985602832}
     - target: {fileID: 1193324200366324889, guid: 909aadbfb6e2d9a44ba4665e654ae06a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15769,6 +15765,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3484382181592620585, guid: 909aadbfb6e2d9a44ba4665e654ae06a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1985602832}
+    - target: {fileID: 4125651490753761798, guid: 909aadbfb6e2d9a44ba4665e654ae06a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1985602832}
     - target: {fileID: 7384622444781677072, guid: 909aadbfb6e2d9a44ba4665e654ae06a, type: 3}
       propertyPath: m_Name
       value: Lose_Screen
@@ -15777,10 +15781,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8790466062699420463, guid: 909aadbfb6e2d9a44ba4665e654ae06a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1985602832}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
