@@ -9,7 +9,7 @@ public class Timer_Controller : MonoBehaviour
     public Image timer;
 
     static public float time_remaining;
-    private float max_time = 20f;
+    private float max_time = 15f;
 
     public int gamePaused = 0, gameFreeze = 0;
     // 0 is playing, 1 is paused. // game stage = 4
