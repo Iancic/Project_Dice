@@ -106,8 +106,11 @@ public class Player_Controller : MonoBehaviour
 
         GameObject[] spawners = GameObject.FindGameObjectsWithTag("Spawner");
         int number_of_spawners = spawners.Length;
-
-        if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0 && finish == false)
+        if (SceneManager.GetActiveScene().name == "Level 7" && number_of_spawners == 0)
+        {
+            Scene_Manager.Instance.MainMenu();
+        }
+        else if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0 && finish == false)
         {
             Instantiate(teleporter, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity);
             finish = true;
