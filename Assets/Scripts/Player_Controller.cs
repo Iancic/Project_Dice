@@ -112,7 +112,7 @@ public class Player_Controller : MonoBehaviour
         }
         else if (number_of_spawners == 0 && SceneManager.GetActiveScene().buildIndex != 0 && finish == false)
         {
-            Instantiate(teleporter, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity);
+            Instantiate(teleporter, new Vector3(-1.5f, 0.5f, 0f), Quaternion.identity);
             finish = true;
             Timer_Controller.Instance.gameFreeze = 1;
         }
@@ -149,7 +149,7 @@ public class Player_Controller : MonoBehaviour
         }
 
         if (other.gameObject.tag == "Freezer")
-        {
+        { 
             Destroy(other.gameObject);
             StartCoroutine(FreezeFunct());
             audio_source.PlayOneShot(freezer_clip);
